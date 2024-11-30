@@ -96,7 +96,6 @@ import static com.nageoffer.shortlink.project.common.constant.RedisKeyConstant.S
 
 /**
  * 短链接接口实现层
- * 公众号：马丁玩编程，回复：加群，添加马哥微信（备注：link）获取项目资料
  */
 @Slf4j
 @Service
@@ -398,7 +397,9 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
         }
         RLock lock = redissonClient.getLock(String.format(LOCK_GOTO_SHORT_LINK_KEY, fullShortUrl));
         lock.lock();
+        // TODO 如果海量并发查询不在缓存的fullShortUrl会给数据库造成压力，可以在获得分布式锁之后限流
         try {
+            // 双重判定锁
             originalLink = stringRedisTemplate.opsForValue().get(String.format(GOTO_SHORT_LINK_KEY, fullShortUrl));
             if (StrUtil.isNotBlank(originalLink)) {
                 shortLinkStats(buildLinkStatsRecordAndSetUser(fullShortUrl, request, response));
