@@ -28,7 +28,7 @@ public class RedisKeyConstant {
     public static final String GOTO_SHORT_LINK_KEY = "short-link:goto:%s";
 
     /**
-     * 短链接空值跳转前缀 Key
+     * 短链接空值跳转前缀 Key【缓存空值防止缓存穿透，过期的、删除的短链也会在这】
      */
     public static final String GOTO_IS_NULL_SHORT_LINK_KEY = "short-link:is-null:goto_%s";
 

@@ -84,6 +84,9 @@ public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFact
         };
     }
 
+    /**
+     * 对白名单放行，以及/api/short-link/admin/v1/user的POST请求放行
+     */
     private boolean isPathInWhiteList(String requestPath, String requestMethod, List<String> whitePathList) {
         return (!CollectionUtils.isEmpty(whitePathList) && whitePathList.stream().anyMatch(requestPath::startsWith)) || (Objects.equals(requestPath, "/api/short-link/admin/v1/user") && Objects.equals(requestMethod, "POST"));
     }

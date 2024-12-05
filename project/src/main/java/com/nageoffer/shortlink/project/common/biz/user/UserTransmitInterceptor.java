@@ -30,6 +30,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class UserTransmitInterceptor implements HandlerInterceptor {
 
+    // preHandle就可以类比过滤器的doFilter函数前面的部分，然后doFilter会try {filterChain.doFilter(servletRequest, servletResponse);}往过滤链中下一个过滤器传
     @Override
     public boolean preHandle(@Nullable HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable Object handler) throws Exception {
         String username = request.getHeader("username");
@@ -42,6 +43,7 @@ public class UserTransmitInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    // 不管拦截器还是过滤器都要在最后removeUser防止内存泄漏，拦截器的afterCompletion相当于admin中过滤器的finally {UserContext.removeUser();}
     @Override
     public void afterCompletion(@Nullable HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable Object handler, Exception exception) throws Exception {
         UserContext.removeUser();

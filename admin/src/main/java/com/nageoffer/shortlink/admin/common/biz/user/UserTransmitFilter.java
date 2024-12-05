@@ -28,6 +28,9 @@ import lombok.SneakyThrows;
 
 /**
  * 用户信息传输过滤器
+ *
+ * 过滤器可以和SpringMVC的拦截器类比，但和GateWay的【public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFactory<Config>】过滤器还是差了不少
+ * 当客户端发送请求带着token时，网关查验token有效则从redis中取出user实体并往请求中添加"userId"、"realName"信息然后放行（根据路径预测路由到指定服务）。否则网关拦截返回错误响应
  */
 @RequiredArgsConstructor
 public class UserTransmitFilter implements Filter {

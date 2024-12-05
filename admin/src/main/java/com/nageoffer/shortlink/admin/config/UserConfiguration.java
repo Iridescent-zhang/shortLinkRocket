@@ -32,13 +32,15 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 public class UserConfiguration {
 
     /**
-     * 用户信息传递过滤器
+     * 用户信息传递过滤器（注册配置的UserTransmitFilter过滤器）
      */
     @Bean
     public FilterRegistrationBean<UserTransmitFilter> globalUserTransmitFilter() {
         FilterRegistrationBean<UserTransmitFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new UserTransmitFilter());
+        // 和拦截器注册时.addPathPatterns("/**");很类似
         registration.addUrlPatterns("/*");
+        // 设置过滤器在过滤链中的顺序
         registration.setOrder(0);
         return registration;
     }

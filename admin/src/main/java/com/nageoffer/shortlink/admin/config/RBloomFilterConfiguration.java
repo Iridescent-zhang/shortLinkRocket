@@ -39,7 +39,7 @@ public class RBloomFilterConfiguration {
     }
 
     /**
-     * 防止分组标识注册查询数据库的布隆过滤器
+     * 防止分组标识注册查询数据库的布隆过滤器  gid要求全局唯一的
      */
     @Bean
     public RBloomFilter<String> gidRegisterCachePenetrationBloomFilter(RedissonClient redissonClient) {
