@@ -44,6 +44,8 @@ import static com.nageoffer.shortlink.admin.common.convention.errorcode.BaseErro
 
 /**
  * 用户操作流量风控过滤器
+ *
+ * 和UserTransmitFilter同样的过滤器
  */
 @Slf4j
 @RequiredArgsConstructor
