@@ -44,7 +44,7 @@ import java.util.List;
  * 短链接中台远程调用服务
  */
 @FeignClient(
-        value = "short-link-project",
+        value = "strumcode-short-link-project",
         url = "${aggregation.remote-url:}",
         /**
          * 远程调用 OpenFeign 接口指定配置类。这里一系列访问监控数据，为了防止用户横向越权，除了保证gid的唯一之外，查询时需要进行权限校验，确保查询的gid属于这个用户，

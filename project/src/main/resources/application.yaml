@@ -3,14 +3,19 @@ server:
 
 spring:
   application:
-    name: short-link-project
+    name: strumcode-short-link-project
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
-    url: jdbc:shardingsphere:classpath:shardingsphere-config-${database.env:dev}.yaml
+    url: jdbc:shardingsphere:classpath:shardingsphere-config-${database.env:prod}.yaml
   data:
     redis:
       host: 127.0.0.1
       port: 6379
+#  data:
+#    redis:
+#      host: common-redis-dev.magestack.cn
+#      port: 19389
+#      password: Sm9sVXBOYJjI030b5tz0trjpzvZzRhtZmEbv0uOImcD1wEDOPfeaqNU4PxHob/Wp
   mvc:
     view:
       prefix: /templates/
@@ -18,7 +23,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: common-nacos-dev.magestack.cn:8848
 
 short-link:
   domain:
@@ -35,6 +40,7 @@ short-link:
         - zhihu.com
         - juejin.cn
         - cnblogs.com
+        - bilibili.com
 
 mybatis-plus:
   configuration:
