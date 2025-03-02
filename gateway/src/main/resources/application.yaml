@@ -9,7 +9,8 @@ spring:
   data:
     redis:
       host: 127.0.0.1
-      port: 6379
+      port: 7169
+#      port: 6379
 #  data:
 #    redis:
 #      host: common-redis-dev.magestack.cn
